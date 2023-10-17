@@ -1,13 +1,23 @@
 package com.generali.mailservice.mail;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
+@RequiredArgsConstructor
 public class MailRestController {
 
-    @GetMapping("/api")
-    String getHello() {
-        return "Hello";
+    private final MailService mailService;
+
+    @PostMapping("/api")
+    ResponseEntity<?> sendMail(@RequestBody MailDto mailDto) {
+        mailService.sendMail(mailDto);
+        return ResponseEntity.status(200).build();
     }
 }
