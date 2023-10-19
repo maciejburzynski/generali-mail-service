@@ -2,21 +2,27 @@ package com.generali.mailservice.mail;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "mails")
+@EqualsAndHashCode(of = "uuid")
+@ToString
 public class Mail {
 
     @Id
     @GeneratedValue
     private Long id;
+    private String uuid = UUID.randomUUID().toString();
     private String receiver;
     private String subject;
     private String content;

@@ -11,5 +11,9 @@ public interface MailMapper {
 
     MailMapper INSTANCE = Mappers.getMapper(MailMapper.class);
 
-    Mail mapMailDtoToEntity(MailDto mailDto);
+    Mail mapDtoToEntity(MailDto mailDto);
+    MailDto mapEntityToDto(Mail mail);
+
+
+
 }

@@ -15,9 +15,14 @@ public class MailRestController {
 
     private final MailService mailService;
 
-    @PostMapping("/api")
+    @PostMapping("/api/mails")
     ResponseEntity<?> sendMail(@RequestBody MailDto mailDto) {
         mailService.sendMail(mailDto);
         return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("/api/mails")
+    ResponseEntity<?> getAllMails() {
+        return ResponseEntity.status(200).body(mailService.getAllMails());
     }
 }
