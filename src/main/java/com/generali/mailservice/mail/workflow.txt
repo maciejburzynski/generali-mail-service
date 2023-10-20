@@ -1,0 +1,10 @@
+
+
+
+
+MailRequest ->
+DB (NOT_SENT) ->
+GET FROM DB AND SEND (10 reqs PER 2 mins) ->
+"SENDING" - to filesystem ->
+DB (SENT)
+-

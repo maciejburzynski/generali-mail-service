@@ -20,7 +20,6 @@ import java.util.Scanner;
 public class MailService {
 
     private final MailRepository mailRepository;
-    private final GeneraliMailServiceRepository customRepository;
     MailMapper mailMapper = MailMapper.INSTANCE;
 
     public void sendMail(MailDto mailDto) {
@@ -31,7 +30,7 @@ public class MailService {
     }
 
     List<Mail> getAllMails(){
-        return customRepository.findAll();
+        return mailRepository.findAll();
     }
     private void sendMail(Mail mail) {
         File file = new File(getFIlePath(mail));
