@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +25,12 @@ public class MailService {
 
     public void sendMail(MailDto mailDto) {
         Mail mail = mailMapper.mapDtoToEntity(mailDto);
+        mailRepository.save(mail);
+        log.info("Mail to save: {}", mail);
+    }
+    public void sendScheduledMail(Mail mail) {
         sendMail(mail);
+        mail.setStatus(MailStatus.SENT);
         mailRepository.save(mail);
         log.info("Mail to save: {}", mail);
     }
@@ -69,4 +75,11 @@ public class MailService {
     }
 
 
+    public List<Mail> getMailsToSend() {
+        return mailRepository.findAll()
+          .stream()
+          .filter(mail -> mail.getStatus().equals(MailStatus.NOT_SENT))
+          .limit(100)
+          .collect(Collectors.toList());
+    }
 }

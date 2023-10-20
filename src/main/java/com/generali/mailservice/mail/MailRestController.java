@@ -29,3 +29,5 @@ public class MailRestController {
         return ResponseEntity.status(200).body(mailService.getAllMails());
     }
 }
+
+//-> MAIL (NOT_SENT) -> SendMail -> SENT
