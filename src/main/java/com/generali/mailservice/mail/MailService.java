@@ -76,10 +76,12 @@ public class MailService {
 
 
     public List<Mail> getMailsToSend() {
-        return mailRepository.findAll()
-          .stream()
-          .filter(mail -> mail.getStatus().equals(MailStatus.NOT_SENT))
-          .limit(100)
-          .collect(Collectors.toList());
+//        return mailRepository.findAll()
+//          .stream()
+//          .filter(mail -> mail.getStatus().equals(MailStatus.NOT_SENT))
+//          .limit(100)
+//          .collect(Collectors.toList());
+
+    return mailRepository.findTop1ByStatus(MailStatus.NOT_SENT);
     }
 }
