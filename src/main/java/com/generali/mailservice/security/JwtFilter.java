@@ -23,7 +23,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-  @Value("${jwt.user-service.key:dupa}")// default - dupa
+  @Value("${user-service.jwt.key:dupa}")
   private String KEY;
 
   @Override
@@ -32,7 +32,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
     String jwtHeaderOrCookieName = "Authorization";
 
-    if (request.getHeader(jwtHeaderOrCookieName) == null) {
+    if (request.getHeader(jwtHeaderOrCookieName) == null
+      || request.getHeader(jwtHeaderOrCookieName).startsWith("Basic")) {
       filterChain.doFilter(request, response);
       return;
     }

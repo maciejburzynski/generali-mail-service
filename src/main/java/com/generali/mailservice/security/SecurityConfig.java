@@ -1,9 +1,15 @@
 package com.generali.mailservice.security;
 
+import javax.sql.DataSource;
+
 import lombok.RequiredArgsConstructor;
+import org.hibernate.cfg.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -21,6 +27,11 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+  @Value("${mail-service.username}")
+  private String mailServiceUsername;
+  @Value("${mail-service.password}")
+  private String mailServicePassword;
+
   private final JwtFilter jwtFilter;
 
   @Bean
@@ -34,7 +45,7 @@ public class SecurityConfig {
       .requestMatchers(AntPathRequestMatcher.antMatcher("/v3/api-docs/**")).permitAll()
       .anyRequest().authenticated());
 
-    httpSecurity.httpBasic(basic -> basic.disable());
+    httpSecurity.httpBasic(basic -> Customizer.withDefaults());
     httpSecurity.formLogin(form -> form.disable());
     httpSecurity.headers(headers -> headers.frameOptions(options -> options.disable()));
     httpSecurity.csrf(csrf -> csrf.disable());
@@ -43,5 +54,15 @@ public class SecurityConfig {
     httpSecurity.addFilterBefore(jwtFilter, BasicAuthenticationFilter.class);
 
     return httpSecurity.build();
+  }
+
+  @Bean
+  public UserDetailsService users() {
+    UserDetails mailService = User.withDefaultPasswordEncoder()
+      .username(mailServiceUsername)
+      .password(mailServicePassword)
+      .authorities("mail-service:write")
+      .build();
+    return new InMemoryUserDetailsManager(mailService);
   }
 }

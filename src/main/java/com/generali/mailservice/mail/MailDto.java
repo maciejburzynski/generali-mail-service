@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 public class MailDto {
 
-    @Email
+    @NotBlank(message = "Receiver must not be blank")
     private String receiver;
-    @NotBlank
+    @NotBlank(message = "Receiver must not be blank")
     private String subject;
-    @NotBlank
+    @NotBlank(message = "Receiver must not be blank")
     private String content;
 }

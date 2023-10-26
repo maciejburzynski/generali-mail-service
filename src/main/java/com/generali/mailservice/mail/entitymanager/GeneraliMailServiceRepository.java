@@ -5,9 +5,11 @@ import java.util.List;
 import com.generali.mailservice.mail.Mail;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Primary
 public class GeneraliMailServiceRepository implements IGeneraliMailServiceRepository {
 
 
