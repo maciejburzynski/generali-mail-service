@@ -12,15 +12,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MailScheduler {
 
-//  private final MailService mailService;
-//  @Scheduled(cron = "${mail-service.activate.cron}")
-//  void scheduledSendMail() {
-//    List<Mail> mailsToSend = mailService.getUnsentMails();
-//    mailsToSend
-//      .stream()
-//      .peek(mail -> log.info(mail.toString()))
-//      .forEach(mail -> mailService.sendMail(mail));
-//
-//  }
+  private final MailService mailService;
+  @Scheduled(cron = "${mail-service.activate.cron}")
+  void scheduledSendMail() {
+    List<Mail> mailsToSend = mailService.getUnsentMails();
+    mailsToSend
+      .stream()
+      .peek(mail -> log.info(mail.toString()))
+      .forEach(mail -> mailService.sendMail(mail));
 
+  }
 }

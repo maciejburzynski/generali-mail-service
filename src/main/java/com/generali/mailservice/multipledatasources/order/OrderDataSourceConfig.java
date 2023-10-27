@@ -50,8 +50,8 @@ public class OrderDataSourceConfig {
       .build();
   }
 
-  @Primary
   @Bean
+  @Primary
   public PlatformTransactionManager orderTransactionManager(
     final @Qualifier("orderEntityManagerFactory") LocalContainerEntityManagerFactoryBean orderEntityManagerFactory){
     return new JpaTransactionManager(orderEntityManagerFactory.getObject());

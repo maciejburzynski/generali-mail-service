@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class MailRestController {
-//
-//    private final MailService mailService;
-//
-//    @PostMapping("/api/mails")
-//    ResponseEntity<?> sendMail(@RequestBody MailDto mailDto) {
-//        log.info("Receiving following MailDto:", mailDto);
-//        mailService.mapAndPersistMail(mailDto);
-//        return ResponseEntity.status(200).build();
-//    }
-//
-//    @GetMapping("/api/mails")
-//    ResponseEntity<?> getAllMails() {
-//        return ResponseEntity.status(200).body(mailService.getAllMails());
-//    }
+
+    private final MailService mailService;
+
+    @PostMapping("/api/mails")
+    ResponseEntity<?> sendMail(@RequestBody MailDto mailDto) {
+        log.info("Receiving following MailDto:", mailDto);
+        mailService.mapAndPersistMail(mailDto);
+        return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("/api/mails")
+    ResponseEntity<?> getAllMails() {
+        return ResponseEntity.status(200).body(mailService.getAllMails());
+    }
 }
