@@ -11,8 +11,8 @@ public class ExampleService {
   private final IGeneraliMailServiceRepository repository;
 
   
-  @PostConstruct
-  void save(){
-    repository.findAll();
-  }
+//  @PostConstruct
+//  void save(){
+//    repository.findAll();
+//  }
 }
