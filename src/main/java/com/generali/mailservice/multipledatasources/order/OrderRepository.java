@@ -1,4 +1,4 @@
-package com.generali.mailservice.mail.multipledatasources.order;
+package com.generali.mailservice.multipledatasources.order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

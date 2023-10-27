@@ -1,4 +1,4 @@
-package com.generali.mailservice.mail.multipledatasources.product;
+package com.generali.mailservice.multipledatasources.product;
 
 import javax.sql.DataSource;
 
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.generali.mailservice.mail.multipledatasources.product",
+@EnableJpaRepositories(basePackages = "com.generali.mailservice.multipledatasources.product",
   entityManagerFactoryRef = "productEntityManagerFactory",
   transactionManagerRef = "productTransactionManager"
 )

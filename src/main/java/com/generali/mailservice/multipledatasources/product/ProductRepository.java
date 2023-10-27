@@ -1,4 +1,4 @@
-package com.generali.mailservice.mail.multipledatasources.product;
+package com.generali.mailservice.multipledatasources.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

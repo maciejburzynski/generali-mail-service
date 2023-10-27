@@ -11,10 +11,10 @@ public class MailTemplates {
                         Best Regards,
                         Generali's Mail Service :)
                         """;
-//  static String getActivationMailTemplate(Mail mail){
-//    return String.format(ACTIVATION_MAIL,
-//      mail.getReceiver(),
-//      mail.getSubject(),
-//      mail.getContent());
-//  }
+  static String getActivationMailTemplate(Mail mail){
+    return String.format(ACTIVATION_MAIL,
+      mail.getReceiver(),
+      mail.getSubject(),
+      mail.getContent());
+  }
 }

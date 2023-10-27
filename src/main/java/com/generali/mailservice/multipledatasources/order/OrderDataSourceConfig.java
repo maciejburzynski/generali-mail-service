@@ -1,4 +1,4 @@
-package com.generali.mailservice.mail.multipledatasources.order;
+package com.generali.mailservice.multipledatasources.order;
 
 import javax.sql.DataSource;
 
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.generali.mailservice.mail.multipledatasources.order",
+@EnableJpaRepositories(basePackages = "com.generali.mailservice.multipledatasources.order",
 entityManagerFactoryRef = "orderEntityManagerFactory",
   transactionManagerRef = "orderTransactionManager"
 )

@@ -1,4 +1,4 @@
-package com.generali.mailservice.mail.multipledatasources.product;
+package com.generali.mailservice.multipledatasources.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

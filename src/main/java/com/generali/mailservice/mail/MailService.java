@@ -19,52 +19,52 @@ import static java.util.Base64.getEncoder;
 @RequiredArgsConstructor
 @Slf4j
 public class MailService {
-//
-////    private final MailRepository mailRepository;
-//    private MailMapper mailMapper = MailMapper.INSTANCE;
-//
-//    @Value("${mail-service.mail.path}")
-//    private String mailPath;
-//    @Value("${mail-service.mail.extension}")
-//    private String mailExtension;
-//
-//    void mapAndPersistMail(MailDto mailDto) {
-//        Mail mail = mailMapper.mapDtoToEntity(mailDto);
-////        mailRepository.save(mail);
-//        log.info("Got MailDto: {} ,Mail to save: {}", mailDto, mail);
-//    }
-//
-//    void sendMail(Mail mail) {
-//        createMail(mail);
-//        mail.setStatus(MailStatus.SENT);
-////        mailRepository.save(mail);
-//        log.info("Sent mail: {}", mail);
-//    }
-//
-//    List<Mail> getAllMails(){
-//        return null;
-//    }
-//
-//    List<Mail> getUnsentMails() {
-//    return null;
-//    }
-//
-//    private void createMail(Mail mail) {
-//        File file = new File(getFIlePath(mail));
-//        try {
-//            file.createNewFile();
-//            FileWriter fileWriter = new FileWriter(file);
-//            fileWriter.write(MailTemplates.getActivationMailTemplate(mail));
-//            fileWriter.close();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    private String getFIlePath(Mail mail) {
-//        String formattedMailSaveAtDate = mail.getSavedAt().format(DateTimeFormatter.ofPattern(GENERALI_DATE_FORMATTER));
-//        String fileName = formattedMailSaveAtDate + "-" + getEncoder().encode(mail.getReceiver().getBytes()) + mailExtension;
-//        return mailPath + "/" + fileName;
-//    }
+
+//    private final MailRepository mailRepository;
+    private MailMapper mailMapper = MailMapper.INSTANCE;
+
+    @Value("${mail-service.mail.path}")
+    private String mailPath;
+    @Value("${mail-service.mail.extension}")
+    private String mailExtension;
+
+    void mapAndPersistMail(MailDto mailDto) {
+        Mail mail = mailMapper.mapDtoToEntity(mailDto);
+//        mailRepository.save(mail);
+        log.info("Got MailDto: {} ,Mail to save: {}", mailDto, mail);
+    }
+
+    void sendMail(Mail mail) {
+        createMail(mail);
+        mail.setStatus(MailStatus.SENT);
+//        mailRepository.save(mail);
+        log.info("Sent mail: {}", mail);
+    }
+
+    List<Mail> getAllMails(){
+        return null;
+    }
+
+    List<Mail> getUnsentMails() {
+    return null;
+    }
+
+    private void createMail(Mail mail) {
+        File file = new File(getFIlePath(mail));
+        try {
+            file.createNewFile();
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(MailTemplates.getActivationMailTemplate(mail));
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String getFIlePath(Mail mail) {
+        String formattedMailSaveAtDate = mail.getSavedAt().format(DateTimeFormatter.ofPattern(GENERALI_DATE_FORMATTER));
+        String fileName = formattedMailSaveAtDate + "-" + getEncoder().encode(mail.getReceiver().getBytes()) + mailExtension;
+        return mailPath + "/" + fileName;
+    }
 
 }
