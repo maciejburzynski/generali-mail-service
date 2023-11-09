@@ -31,7 +31,6 @@ public class FlywayConfig {
     Flyway configureMailFlyway() {
         return Flyway.configure()
                 .dataSource(mailJpaConfig.mailDataSource())
-//                .table("flyway_mail")
                 .locations("db/migration/mails")
                 .load();
     }

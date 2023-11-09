@@ -1,3 +1,7 @@
+
+
+
+
 OVERRIDDEN (PER DB)                                             DEFAULT(FOR SINGLE DB)
 spring.datasource.product                                       spring.datasource
 spring.datasource.product.configuration (hikari)                spring.datasource.hikari

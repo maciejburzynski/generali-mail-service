@@ -27,7 +27,7 @@ public class MailRestController {
             @ApiResponse(responseCode = "401", description = "Not entitled enough"),
             @ApiResponse(responseCode = "200", description = "Valid credentials and mail sent")
     })
-    @SecurityRequirement(name = "Basic Authentication")
+    @SecurityRequirement(name = "Basic")
     @PostMapping("/api/mails")
     ResponseEntity<?> sendMail(@RequestBody MailDto mailDto) {
         log.info("Receiving following MailDto:", mailDto);
@@ -42,7 +42,7 @@ public class MailRestController {
             @ApiResponse(responseCode = "200", description = "Valid credentials and mail sent")
     })
     @GetMapping("/api/mails")
-    @SecurityRequirement(name = "Bearer Authentication")
+    @SecurityRequirement(name = "Bearer")
     ResponseEntity<?> getAllMails() {
         return ResponseEntity.status(200).body(mailService.getAllMails());
     }
