@@ -26,9 +26,11 @@ public class Mail {
     private String receiver;
     private String subject;
     private String content;
+    @Column(name = "saved_at")
     private LocalDateTime savedAt;
     @Enumerated(value = EnumType.STRING)
     private MailStatus status;
+    @Column(name = "sent_at")
     private LocalDateTime sentAt;
 
     public Mail(String receiver, String subject, String content) {

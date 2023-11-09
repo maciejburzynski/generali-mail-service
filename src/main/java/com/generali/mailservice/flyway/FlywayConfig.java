@@ -1,4 +1,4 @@
-package com.generali.mailservice;
+package com.generali.mailservice.flyway;
 
 import com.generali.mailservice.mail.MailJpaConfig;
 import com.generali.mailservice.multipledatasources.order.OrderDataSourceConfig;

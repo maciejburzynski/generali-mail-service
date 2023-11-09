@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,7 +21,7 @@ import static java.util.Base64.getEncoder;
 @Slf4j
 public class MailService {
 
-//    private final MailRepository mailRepository;
+    private final MailRepository mailRepository;
     private MailMapper mailMapper = MailMapper.INSTANCE;
 
     @Value("${mail-service.mail.path}")
@@ -34,6 +35,7 @@ public class MailService {
         log.info("Got MailDto: {} ,Mail to save: {}", mailDto, mail);
     }
 
+    @Transactional
     void sendMail(Mail mail) {
         createMail(mail);
         mail.setStatus(MailStatus.SENT);
@@ -46,7 +48,7 @@ public class MailService {
     }
 
     List<Mail> getUnsentMails() {
-    return null;
+    return mailRepository.findTop1ByStatus(MailStatus.NOT_SENT);
     }
 
     private void createMail(Mail mail) {
